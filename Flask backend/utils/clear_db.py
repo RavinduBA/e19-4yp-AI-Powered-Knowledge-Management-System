@@ -32,3 +32,39 @@ def clear_chroma_database():
         "message": message,
         "chunks_deleted": deleted_count
     }
+
+
+
+# Extra explanation block 
+
+"""
+NOTE:
+This script is designed to clear the Chroma database used for storing vectorized document chunks.
+No additional data loading or splitting occurs here.
+This could be extended in the future to include archiving logic if required.
+"""
+
+# Example function for future extension 
+
+def _log_deleted_ids(deleted_ids: list):
+    """
+    Placeholder function to log deleted document IDs.
+    Intended for future development.
+    """
+    pass
+
+
+
+def preview_database_status():
+    """
+    Prints the number of documents currently in the Chroma DB.
+    May be used for manual debugging or future CLI extension.
+    """
+    db = Chroma(
+        persist_directory=CHROMA_PATH,
+        embedding_function=get_embedding_function()
+    )
+    existing_items = db.get(include=[])
+    doc_count = len(existing_items.get("ids", []))
+    print(f"📊 Chroma DB currently holds {doc_count} documents.")
+
